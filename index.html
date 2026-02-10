@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>房產活化與資產翻倍計畫 - 李浚瑋</title>
+    <title>資產活化與資金再配置計畫 - 李浚瑋</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; margin: 0; font-family: sans-serif; overflow: hidden; }
-        .slide-enter { animation: fadeIn 0.5s ease-in-out; }
+        body { background-color: #0f172a; margin: 0; font-family: 'Noto Sans TC', sans-serif; color: #f8fafc; }
+        .mono { font-family: 'Roboto Mono', monospace; }
+        .slide-enter { animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .bg-navy-dark { background-color: #020617; }
+        .border-gold { border-color: #fbbf24; }
+        .text-gold { color: #fbbf24; }
     </style>
 </head>
 <body>
@@ -22,11 +27,7 @@
         const { useState, useEffect } = React;
 
         const Icon = ({ name, size = 24, className = "" }) => {
-            useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            });
+            useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
             return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
         };
 
@@ -35,135 +36,202 @@
             const totalSlides = 6;
 
             const slides = [
-                // Slide 1: 封面
-                <div className="flex flex-col h-full items-center justify-center text-center bg-slate-900 text-white slide-enter p-6">
-                    <div className="mb-6 p-6 bg-indigo-500/10 rounded-full border border-indigo-500/20">
-                        <Icon name="activity" size={64} className="text-indigo-400" />
+                // Slide 1: 封面 - 複刻PDF專業感
+                <div className="flex flex-col h-full items-center justify-center text-center bg-navy-dark slide-enter p-6 border-b-8 border-indigo-600">
+                    <p className="text-indigo-400 mono tracking-widest mb-4 opacity-70">CONFIDENTIAL STRATEGY DOCUMENT</p>
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight">
+                        資產活化與資金再配置計畫書
+                    </h1>
+                    <div className="w-24 h-1 bg-indigo-500 mb-6"></div>
+                    <p className="text-xl md:text-2xl text-slate-400 mb-8 font-light">從現金流防禦到複利增長的策略轉型</p>
+                    <div className="flex gap-4 mb-12">
+                        <span className="px-4 py-2 bg-slate-800 border border-slate-700 rounded text-xs mono">CAGR +8.5%</span>
+                        <span className="px-4 py-2 bg-slate-800 border border-slate-700 rounded text-xs mono">YoY +12%</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">房產活化與資產翻倍計畫</h1>
-                    <p className="text-xl text-slate-400 mb-8 font-light">專屬提案：李浚瑋</p>
-                    <div className="flex gap-4">
-                        <span className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-sm">槓桿優化</span>
-                        <span className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-full text-sm">現金流倍增</span>
-                    </div>
-                    <p className="mt-12 text-indigo-400 animate-pulse">點擊右下角按鈕開始簡報</p>
+                    <p className="mono text-indigo-400 text-sm tracking-tighter animate-pulse">INITIATING WEALTH ARCHITECTURE...</p>
                 </div>,
 
-                // Slide 2: 風險警告
-                <div className="flex flex-col h-full bg-slate-950 text-white p-6 md:p-12 slide-enter">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-8 border-l-4 border-red-500 pl-4">現況分析：理財型房貸的致命傷</h2>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-slate-900 p-8 rounded-2xl border border-red-900/30">
-                            <h3 className="text-xl font-bold mb-4 text-red-400">五年後的資金斷層</h3>
-                            <p className="text-slate-300 mb-6 font-light">若 400 萬理財型無法續約轉 10 年攤還，月付將飆升至 38,624 元。</p>
-                            <div className="space-y-4 bg-black/30 p-4 rounded-xl">
-                                <div className="flex justify-between text-sm md:text-base"><span>目前每月盈餘</span><span className="text-green-400 font-bold">+15,371</span></div>
-                                <div className="flex justify-between text-sm md:text-base"><span>變更後盈餘</span><span className="text-red-500 font-bold">-15,291</span></div>
+                // Slide 2: 現狀風險 - 懸崖效應
+                <div className="flex flex-col h-full bg-slate-950 p-6 md:p-12 slide-enter">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3">
+                        <span className="text-red-500 mono">01</span> 現狀風險：五年後的「懸崖效應」
+                    </h2>
+                    <div className="grid md:grid-cols-2 gap-10">
+                        <div className="bg-slate-900/50 p-8 rounded-sm border-l-4 border-red-500">
+                            <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><Icon name="alert-triangle" className="text-red-500"/> 理財型房貸結構缺陷</h3>
+                            <p className="text-slate-400 mb-6 leading-relaxed">若富邦銀行(Fubon)屆期拒絕續約，您的財務結構將面臨立即性的衝擊。</p>
+                            <div className="space-y-4 mono">
+                                <div className="flex justify-between border-b border-slate-800 pb-2"><span>當前月支出</span><span className="text-white">31,295 TWD</span></div>
+                                <div className="flex justify-between border-b border-slate-800 pb-2 text-red-400"><span>預期跳升至</span><span>50,779 TWD</span></div>
+                                <div className="bg-red-500/10 p-4 mt-4 text-center">
+                                    <p className="text-xs text-red-300">淨現金流缺口 (Deficit)</p>
+                                    <p className="text-2xl font-bold text-red-500">-15,291 TWD/月</p>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex items-center text-slate-400 italic font-light">這將迫使投資中斷，損失極大的複利增長空間。</div>
-                    </div>
-                </div>,
-
-                // Slide 3: 解決方案
-                <div className="flex flex-col h-full bg-slate-950 text-white p-6 md:p-12 slide-enter">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-8 border-l-4 border-indigo-500 pl-4">核心策略：轉貸活化 (二進方案)</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                        <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
-                            <p className="text-indigo-300 text-sm mb-1">一般型貸款</p>
-                            <p className="text-2xl font-bold">900 萬</p>
-                            <p className="text-xs text-slate-500 mt-1">2.45% / 28年</p>
-                        </div>
-                        <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 text-center">
-                            <p className="text-indigo-300 text-sm mb-1">保單借款</p>
-                            <p className="text-2xl font-bold">450 萬</p>
-                            <p className="text-xs text-slate-500 mt-1">利息 14,813/月</p>
-                        </div>
-                        <div className="bg-indigo-900/40 p-6 rounded-xl border border-indigo-500 text-center">
-                            <p className="text-white text-sm font-bold mb-1">總運用資金</p>
-                            <p className="text-2xl font-bold">1,350 萬</p>
-                            <p className="text-xs text-indigo-300 mt-1">提升 68% 水位</p>
-                        </div>
-                    </div>
-                </div>,
-
-                // Slide 4: 現金流比較
-                <div className="flex flex-col h-full bg-slate-950 text-white p-6 md:p-12 slide-enter text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-12">每月盈餘比較 (現金流倍增)</h2>
-                    <div className="max-w-2xl mx-auto w-full space-y-12">
-                        <div>
-                            <div className="flex justify-between mb-2 text-sm text-slate-400"><span>原計畫盈餘</span><span>15,371</span></div>
-                            <div className="w-full bg-slate-800 h-6 rounded-full overflow-hidden">
-                                <div className="bg-slate-600 h-full" style={{width: '33%'}}></div>
+                        <div className="flex flex-col justify-center space-y-6">
+                            <p className="text-slate-400 italic">"化解五年期續約風險，鎖定長期獲利引擎。"</p>
+                            <div className="h-40 bg-slate-900 rounded border border-slate-800 flex items-center justify-center">
+                                <Icon name="trending-down" size={80} className="text-red-900/50" />
                             </div>
                         </div>
-                        <div>
-                            <div className="flex justify-between mb-2 text-sm text-green-400 font-bold"><span>新方案盈餘</span><span>26,433</span></div>
-                            <div className="w-full bg-slate-800 h-6 rounded-full overflow-hidden">
-                                <div className="bg-green-500 h-full" style={{width: '60%'}}></div>
+                    </div>
+                </div>,
+
+                // Slide 3: 策略對決 - 鎖定28年穩定性
+                <div className="flex flex-col h-full bg-slate-950 p-6 md:p-12 slide-enter">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3">
+                        <span className="text-indigo-500 mono">02</span> 雙軌優化：轉貸優化與保單活化
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-slate-900 p-6 border-t-2 border-indigo-500">
+                            <h4 className="mono text-indigo-400 text-sm mb-4">STRATEGY A: REFINANCE</h4>
+                            <p className="text-xl font-bold mb-2">元大銀行 (Yuanta) 結構</p>
+                            <p className="text-slate-400 text-sm mb-4">利用28年長年限本利攤還，消除不確定性。</p>
+                            <div className="mono text-sm space-y-2 bg-black/40 p-4 rounded">
+                                <div className="flex justify-between"><span>貸款總額</span><span>900 萬</span></div>
+                                <div className="flex justify-between"><span>利率</span><span>2.45%</span></div>
+                                <div className="flex justify-between text-indigo-300"><span>新月付金</span><span>37,505 TWD</span></div>
                             </div>
                         </div>
-                        <div className="p-6 bg-indigo-600 rounded-2xl shadow-xl mt-8">
-                            <p className="text-indigo-100 text-sm md:text-base">加計自存後總月投額</p>
-                            <p className="text-3xl md:text-4xl font-black">46,433 元</p>
+                        <div className="bg-slate-900 p-6 border-t-2 border-green-500">
+                            <h4 className="mono text-green-400 text-sm mb-4">STRATEGY B: ARBITRAGE</h4>
+                            <p className="text-xl font-bold mb-2">結構性套利 (Arbitrage)</p>
+                            <p className="text-slate-400 text-sm mb-4">利用保單低利借貸，創造穩定純被動收入。</p>
+                            <div className="mono text-sm space-y-2 bg-black/40 p-4 rounded">
+                                <div className="flex justify-between"><span>借款金額</span><span>450 萬</span></div>
+                                <div className="flex justify-between"><span>預期殖利率</span><span>7.0%</span></div>
+                                <div className="flex justify-between text-green-300"><span>每月純盈餘</span><span>+11,438 TWD</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>,
 
-                // Slide 5: 複利目標
-                <div className="flex flex-col h-full bg-slate-950 text-white p-6 md:p-12 slide-enter">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-8 border-l-4 border-indigo-500 pl-4">十年展望：複利成長</h2>
-                    <div className="grid md:grid-cols-2 gap-8 h-full items-center">
+                // Slide 4: 投資流水線 - 配置邏輯
+                <div className="flex flex-col h-full bg-slate-950 p-6 md:p-12 slide-enter">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3 text-indigo-400">
+                        <span className="mono">03</span> 自動化投資流水線
+                    </h2>
+                    <div className="grid md:grid-cols-2 gap-10">
                         <div className="space-y-6">
-                            <div className="p-6 bg-slate-900 rounded-xl border border-slate-800">
-                                <p className="text-indigo-400 font-bold mb-1">第 5 年資產目標</p>
-                                <p className="text-3xl md:text-4xl font-bold">672 萬</p>
+                            <div className="bg-indigo-900/20 p-6 rounded border border-indigo-500/30">
+                                <p className="mono text-xs text-indigo-400 mb-1">TOTAL CAPACITY</p>
+                                <p className="text-4xl font-bold">46,433 <span className="text-lg">TWD/月</span></p>
                             </div>
-                            <div className="p-8 bg-indigo-600 rounded-2xl shadow-2xl">
-                                <p className="text-white font-bold mb-1">第 10 年終極目標</p>
-                                <p className="text-4xl md:text-5xl font-black text-yellow-400">2,962 萬</p>
+                            <div className="space-y-4">
+                                <div className="flex items-start gap-4">
+                                    <div className="bg-indigo-500 w-2 h-2 mt-2"></div>
+                                    <div>
+                                        <p className="font-bold">安聯台灣科技 (70%)</p>
+                                        <p className="text-xs text-slate-500">半導體供應鏈優勢，歷史爆發力強。</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <div className="bg-slate-500 w-2 h-2 mt-2"></div>
+                                    <div>
+                                        <p className="font-bold">貝萊德世界科技 (30%)</p>
+                                        <p className="text-xs text-slate-500">佈局全球軟體巨頭，分散單一市場風險。</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="text-slate-500 text-center italic p-8 font-light">
-                            "這不僅是數字，而是透過資產活化實現的財務自由藍圖。"
+                        <div className="bg-slate-900 border border-slate-800 p-8 flex flex-col justify-center">
+                            <h4 className="mono text-xs text-slate-500 mb-4">HISTORICAL PERFORMANCE</h4>
+                            <div className="space-y-4">
+                                <div>
+                                    <p className="text-xs">Allianz Taiwan Tech (10Y)</p>
+                                    <div className="w-full bg-slate-800 h-2 mt-1"><div className="bg-indigo-500 h-full" style={{width: '95%'}}></div></div>
+                                    <p className="text-right text-xs mono text-indigo-400">+534.79%</p>
+                                </div>
+                                <div>
+                                    <p className="text-xs">BlackRock World Tech (10Y)</p>
+                                    <div className="w-full bg-slate-800 h-2 mt-1"><div className="bg-slate-500 h-full" style={{width: '60%'}}></div></div>
+                                    <p className="text-right text-xs mono text-slate-400">+170.38%</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>,
 
-                // Slide 6: 行動方針
-                <div className="flex flex-col h-full bg-indigo-950 text-white p-6 md:p-12 slide-enter items-center justify-center text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-indigo-300">立即啟動</h2>
-                    <div className="grid md:grid-cols-2 gap-6 w-full max-w-2xl text-left">
-                        <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                            <h3 className="font-bold text-white mb-2">1. 轉貸申請</h3>
-                            <p className="text-sm text-slate-400">辦理 900 萬/28年期新房貸。</p>
+                // Slide 5: 複利效益 - 資產巔峰
+                <div className="flex flex-col h-full bg-slate-950 p-6 md:p-12 slide-enter">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-8 border-l-4 border-gold pl-4">
+                        <span className="mono text-gold">04</span> 複利效益：時間與紀律的力量
+                    </h2>
+                    <div className="grid md:grid-cols-3 gap-6 mb-8 text-center">
+                        <div className="bg-slate-900 p-4 border border-slate-800">
+                            <p className="text-xs text-slate-500 mb-1 mono">YEAR 5</p>
+                            <p className="text-lg font-bold">資產初具規模</p>
                         </div>
-                        <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                            <h3 className="font-bold text-white mb-2">2. 資產配置</h3>
-                            <p className="text-sm text-slate-400">啟動 70/30 科技基金定期定額。</p>
+                        <div className="bg-slate-900 p-4 border border-slate-800">
+                            <p className="text-xs text-slate-500 mb-1 mono">YEAR 20</p>
+                            <p className="text-lg font-bold text-gold">財富自由門檻</p>
+                        </div>
+                        <div className="bg-indigo-900/40 p-4 border border-indigo-500">
+                            <p className="text-xs text-indigo-300 mb-1 mono">YEAR 28</p>
+                            <p className="text-lg font-bold text-white">房貸結清，資產巔峰</p>
                         </div>
                     </div>
-                    <p className="mt-16 text-xs text-slate-500 tracking-widest uppercase font-medium">李浚瑋 專屬財務報告</p>
+                    <div className="h-48 bg-navy-dark border border-slate-800 relative flex items-end p-4">
+                        <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-t from-indigo-500/10 to-transparent"></div>
+                        <div className="w-full h-px bg-slate-700 absolute bottom-12"></div>
+                        <div className="flex items-end gap-2 w-full h-full relative">
+                            {[10, 20, 35, 55, 80, 100].map((h, i) => (
+                                <div key={i} className="bg-indigo-500/40 border-t border-indigo-400 flex-1" style={{height: `${h}%`}}></div>
+                            ))}
+                        </div>
+                        <div className="absolute top-4 right-4 flex items-center gap-2">
+                             <Icon name="zap" className="text-gold" size={16} />
+                             <span className="text-xs mono text-slate-400 tracking-tighter">EXPONENTIAL GROWTH MODEL</span>
+                        </div>
+                    </div>
+                    <p className="mt-6 text-sm text-slate-400 font-light italic">"房貸負責持有資產，投資負責累積財富。"</p>
+                </div>,
+
+                // Slide 6: Action Plan
+                <div className="flex flex-col h-full bg-navy-dark items-center justify-center text-center p-6 md:p-12 slide-enter">
+                    <h2 className="text-4xl font-bold mb-12">下一步行動計畫 <span className="mono text-indigo-500">ACTION PLAN</span></h2>
+                    <div className="grid md:grid-cols-3 gap-8 w-full max-w-4xl">
+                        <div className="space-y-4">
+                            <div className="text-3xl font-black mono text-slate-700">01</div>
+                            <h4 className="font-bold text-indigo-400">轉貸申請</h4>
+                            <p className="text-xs text-slate-500">向元大銀行申請28年期、900萬額度方案。</p>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="text-3xl font-black mono text-slate-700">02</div>
+                            <h4 className="font-bold text-indigo-400">保單活化</h4>
+                            <p className="text-xs text-slate-500">撥款後執行 450 萬借款，啟動套利引擎。</p>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="text-3xl font-black mono text-slate-700">03</div>
+                            <h4 className="font-bold text-indigo-400">設定 AIP</h4>
+                            <p className="text-xs text-slate-500">自動化扣款 46,433 TWD 至基金帳戶。</p>
+                        </div>
+                    </div>
+                    <div className="mt-20 pt-8 border-t border-slate-800 w-full max-w-2xl text-center">
+                        <p className="text-xs text-slate-500 tracking-widest uppercase mb-2">Transforming uncertainty into a calculated, long-term wealth architecture.</p>
+                        <p className="mono text-gold text-lg">李浚瑋 專屬財務顧問</p>
+                    </div>
                 </div>
             ];
 
             return (
                 <div className="flex flex-col h-screen w-full bg-black">
-                    <div className="flex-1 relative shadow-2xl max-w-5xl mx-auto w-full md:my-8 bg-slate-900 md:rounded-3xl border border-slate-800 overflow-hidden">
+                    <div className="flex-1 relative shadow-2xl max-w-5xl mx-auto w-full md:my-8 bg-slate-900 md:rounded-lg border border-slate-800 overflow-hidden shadow-indigo-500/10">
                         {slides[currentSlide]}
-                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center">
+                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
                             <button 
                                 onClick={() => setCurrentSlide(prev => Math.max(prev - 1, 0))}
-                                className={`p-3 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-all ${currentSlide === 0 ? 'invisible' : 'visible'}`}
+                                className={`pointer-events-auto p-2 bg-slate-800 text-white hover:bg-slate-700 transition-all ${currentSlide === 0 ? 'invisible' : 'visible'}`}
                             >
                                 <Icon name="chevron-left" />
                             </button>
-                            <div className="bg-black/60 px-6 py-2 rounded-full text-white text-sm font-mono border border-slate-700">
+                            <div className="bg-indigo-900/60 px-6 py-1 rounded-sm text-white text-xs font-mono border border-indigo-500/50">
                                 {currentSlide + 1} / {totalSlides}
                             </div>
                             <button 
                                 onClick={() => setCurrentSlide(prev => Math.min(prev + 1, totalSlides - 1))}
-                                className={`p-3 rounded-full bg-indigo-600 text-white hover:bg-indigo-500 transition-all ${currentSlide === totalSlides - 1 ? 'invisible' : 'visible'}`}
+                                className={`pointer-events-auto p-2 bg-indigo-600 text-white hover:bg-indigo-500 transition-all ${currentSlide === totalSlides - 1 ? 'invisible' : 'visible'}`}
                             >
                                 <Icon name="chevron-right" />
                             </button>
